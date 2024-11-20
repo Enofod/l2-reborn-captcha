@@ -16,8 +16,8 @@
                 
                 <div class="grid grid-cols-3 justify-center pt-8">
                     @for (letter of lettersSignal(); track letter) {
-                        <div class="flex items-center justify-center" (click)="onLetterClick(letter)">
-                            <img class="pt-2" [src]="'https://enofod.github.io/l2-reborn-captcha/letters/' + letter + '.png'"/>
+                        <div class="flex items-center justify-center">
+                            <img (click)="onLetterClick(letter)" class="pt-2" [src]="'https://enofod.github.io/l2-reborn-captcha/letters/' + letter + '.png'"/>
                         </div>
                         
                     }
