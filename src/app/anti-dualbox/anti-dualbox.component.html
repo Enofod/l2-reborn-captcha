@@ -1,0 +1,52 @@
+<div class="w-[400px] h-[500px] bg-[#27211c]" >
+    <div class="flex flex-col text-white text-sm p-1 items-center justify-center px-2">
+        <div class="w-full text-center text-sm py-2 border-b border-[#605c50]">
+            ANTI-Dualbox
+        </div>
+
+        <div class="p-1 pt-0 bg-[#1b1c19] border border-[#605c50] w-full h-[450px]">
+            <div class="flex flex-col pt-6 px-12">
+                <div class="flex justify-center items-center">
+                    <img src="https://enofod.github.io/l2-reborn-captcha/ornament.png" class="h-14"/>
+                </div>
+                
+                <div class="pt-4 flex items-center h-[32px]">
+                    Find this letter below and click on it <img class="pl-2" [src]="'https://enofod.github.io/l2-reborn-captcha/letters/' + currentLetterSignal() + '.png'"/>
+                </div>
+                
+                <div class="grid grid-cols-3 justify-center pt-8">
+                    @for (letter of lettersSignal(); track letter) {
+                        <div class="flex items-center justify-center" (click)="onLetterClick(letter)">
+                            <img class="pt-2" [src]="'https://enofod.github.io/l2-reborn-captcha/letters/' + letter + '.png'"/>
+                        </div>
+                        
+                    }
+                </div>
+
+                
+                <div class="pt-6 flex justify-center items-center">
+                    
+                        Time: 
+                        @if(timer$ | async; as time) {
+                        <span class="pl-2">{{time}} seconds</span>
+                    }
+                </div>
+
+                @if (lastAnswerResultSignal()) {
+                <div class="flex pt-6 justify-center items-center">
+                    Last Answer:
+                    @if (lastAnswerResultSignal() === 'OK') {
+                        <span class="pl-1 text-green-600">OK ({{ lastAnswerResultTimeSignal() }} seconds)</span>
+                    }
+                    @if (lastAnswerResultSignal() === 'ERROR') {
+                        <span class="pl-1 text-red-600">ERROR ({{ lastAnswerResultTimeSignal() }} seconds)</span>
+                    }
+                </div>
+            }
+ 
+
+            </div>
+            
+        </div>
+    </div>
+</div>
